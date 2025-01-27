@@ -1,0 +1,21 @@
+.nav_wrapper {
+  position: fixed;
+  width: 100%;
+  z-index: 9;
+  .header_logo {
+    width: 150px;
+    height: 80px;
+    cursor: pointer;
+    img {
+      height: 100%;
+      width: 100%;
+      display: block;
+      object-fit: cover;
+    }
+  }
+  .header_nav {
+    list-style: none;
+    text-decoration: none;
+    gap: 50px;
+  }
+}

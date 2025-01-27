@@ -1,0 +1,11 @@
+.home_wrapper {
+  width: 100vw;
+  overflow: hidden;
+  .middle_banner {
+    height: 50vh;
+    background-image: url("../../assets/images/flower.png");
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+  }
+}

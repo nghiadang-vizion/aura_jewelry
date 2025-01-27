@@ -1,0 +1,12 @@
+.text_img {
+  height: 100%;
+  img {
+    object-fit: contain;
+  }
+  .horizontal_img {
+    position: absolute;
+    transform: translate(50%, 50%);
+    left: -300px;
+    bottom: 155px;
+  }
+}
