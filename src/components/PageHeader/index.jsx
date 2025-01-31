@@ -1,19 +1,56 @@
-import React from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { Link } from "react-router-dom";
 import "./style.scss";
 import IconFind from "../../assets/logos/IconFind";
 import { CButton } from "@coreui/react";
 import IconBag from "../../assets/logos/IconBag";
+import logo from "./aura_logo.png";
 
 const PageHeader = () => {
+  const headerRef = useRef(null);
+
+  const [showHeader, setShowHeader] = useState(true);
+  const [lastScrollY, setLastScrollY] = useState(0);
+  const [isTop, setIsTop] = useState(true); // Kiểm tra có đang ở đầu trang không
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const currentScrollY = window.scrollY;
+
+      if (currentScrollY === 0) {
+        setShowHeader(true);
+        setIsTop(true); // Ở đầu trang -> không có background
+      } else {
+        setIsTop(false); // Cuộn xuống -> có background
+        if (currentScrollY > lastScrollY) {
+          setShowHeader(false); // Ẩn header khi cuộn xuống
+        } else {
+          setShowHeader(true); // Hiện header khi cuộn lên
+        }
+      }
+
+      setLastScrollY(currentScrollY);
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, [lastScrollY]);
+
   return (
     <header>
-      <nav className="nav_wrapper d-flex align-items-center justify-content-between px-5">
+      <nav
+        ref={headerRef}
+        className="nav_wrapper d-flex align-items-center justify-content-between px-5"
+        style={{
+          transform: showHeader ? "translateY(0)" : "translateY(-100%)",
+          backgroundColor: isTop ? "transparent" : "white",
+          boxShadow: isTop ? "none" : "0 2px 10px rgba(0, 0, 0, 0.1)",
+        }}
+      >
         <div className="header_logo">
-          <img
-            src="https://scontent.fsgn17-1.fna.fbcdn.net/v/t39.30808-6/472558985_992162706282615_3963512732402177592_n.jpg?_nc_cat=105&ccb=1-7&_nc_sid=6ee11a&_nc_ohc=ChtPyWf3oJUQ7kNvgGzQ9lY&_nc_zt=23&_nc_ht=scontent.fsgn17-1.fna&_nc_gid=AQPzOCcDxQ7z6Y-CPcqjkh6&oh=00_AYCIOR5YOeVU-MgtXB5ss7-lldjPLlToQr4qOOWkRdMSXQ&oe=679C195E"
-            alt="aura_logo"
-          />
+          <img src={logo} alt="aura_logo" />
         </div>
         <ul className="d-flex p-0 m-0 align-items-center header_nav">
           <li>

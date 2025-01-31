@@ -1,0 +1,22 @@
+.production {
+  gap: 10px;
+  .product_img {
+    width: 300px;
+    height: 250px;
+
+    img {
+      object-fit: contain;
+    }
+  }
+  .product_img.shadow_box {
+    box-shadow: -10px 10px 10px rgba(0, 0, 0, 0.1);
+    border-bottom-left-radius: 85px;
+  }
+  .title {
+    font-size: 20px;
+    font-weight: bold;
+  }
+  .price {
+    font-style: 20px;
+  }
+}

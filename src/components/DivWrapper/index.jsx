@@ -7,10 +7,12 @@ const goldPos = [
   {
     top: "100%",
     left: "10vw",
+    isRotate: true,
   },
   {
     top: "-10px",
     left: "90vw",
+    isRotate: false,
   },
 ];
 
@@ -18,22 +20,19 @@ const DivWrapper = ({ children = <></> }) => {
   const divRef = useRef();
   return (
     <div
-      className="div_wrapper position-relative w-100"
+      className={`div_wrapper position-relative w-100`}
       id="container_div"
       ref={divRef}
     >
-      {goldPos.map((item) => (
+      {goldPos.map((item, index) => (
         <img
+          key={index}
           src={goldImg}
           alt="gold"
+          className={`gold_png ${item.isRotate ? "_rotate" : ""}`}
           style={{
-            position: "absolute",
             top: `${item.top}`,
             left: `${item.left}`,
-            height: "500px",
-            width: "500px",
-            transform: "translate(-50%, -50%)",
-            objectFit: "contain",
           }}
         />
       ))}

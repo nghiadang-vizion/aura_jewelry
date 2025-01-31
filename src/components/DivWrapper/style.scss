@@ -1,2 +1,14 @@
 .div_wrapper {
+  .gold_png {
+    position: absolute;
+    height: 500px;
+    width: 500px;
+    transform: translate(-50%, -50%);
+    object-fit: contain;
+    // pointerEvents: "none",
+
+    &._rotate {
+      transform: translate(-50%, -50%) rotate(180deg);
+    }
+  }
 }
